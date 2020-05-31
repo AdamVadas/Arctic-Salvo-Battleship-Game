@@ -1,5 +1,5 @@
 # Arctic Salvo 
-> An online multiplayer battleship game with a Java/Spring Boot/Gradle back-end and a Vue.js front-end
+> An online multiplayer battleship game
 
 ![Main pic](mainpic.jpg)
 
