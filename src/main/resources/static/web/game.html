@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ship Locations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="/web/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="mainwrapper">
+            <div class="titlewrapper">
+                <div id="playerlogwrapper">
+                    <h3 id="loginfo">Logged in as</h3>
+                    <h3 id="playername">{{player1}}</h3>
+                </div>
+                <img class="title" src="title.jpg">
+                <div id="menubuttonwrapper">
+                    <div>
+                        <button class="mainmenu" @click="goToMainMenu()">Main Menu</button>
+                    </div>
+                    <div>
+                        <button class="logoutbtn" @click="logout()">Log out</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mainwrapper3">
+                <div class="gamewrapper" v-show="isGameOver==false">
+                    <div class="gridbackground">
+                        <div class="gridwrapper" id="playergrid">
+                            <div class="player" id="playersname">
+                                <table class="infotable">
+                                    <tr>
+                                        PLAYER: {{player1}} [YOU]
+                                    </tr>
+                                    <tr class="inforow">
+                                        <td class="infodata">HITS ON YOU: {{noOfHitsOnMe}} / 17</td>
+                                        <td class="infodata">SHIPS LEFT: {{myShipsLeft}} / 5</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <table class="p1table">
+                                <tr>
+                                </tr>
+                                <tr v-for="grida in gridAlphabet">
+                                    <td class="td4" v-if="grida == ''">
+                                        <div v-if="isMyTurn" id="greendot">.</div>
+                                    </td>
+                                    <template v-for="gridn in gridNumbers">
+                                        <td class="td4" v-if="grida == '' && gridn != ''" v-bind:id="'grid1'+grida+gridn">{{gridn}}</td>
+                                        <td class="td4" v-if="gridn == 0 && grida != ''" v-bind:id="'grid1'+grida+gridn">{{grida}}</td>
+                                        <td class="td2" v-show="grida != '' && gridn != ''" v-bind:id="'grid1'+grida+gridn" @click="selectGridCell('grid1'+grida+gridn)" @mouseover="moveHover('grid1'+grida+gridn, 'add')" @mouseleave="moveHover('grid1'+grida+gridn, 'remove')"></td>
+                                    </template>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="centerwrapper">
+                        <div class="centerfield">
+                            <h4 id="centertext">{{centertext}}</h4>
+                        </div>
+                        <div class="firebutton" v-if="!addingShipsProcess && isMyTurn" @click="addSalvoes()">FIRE!</div>
+                    </div>
+                    <div class="gridbackground" v-if="addingShipsProcess">
+                        <div class="gridwapper">
+                            <div class="shipwrapper">
+                                <div class="shipselection">
+                                    <div class="shiptoput" id="aircraftcarrier" @click="selectShipToPut('aircraftcarrier')">AIRCRAFT CARRIER
+                                    </div>
+                                    <div class="shiptoput" id="battleship" @click="selectShipToPut('battleship')">BATTLESHIP
+                                    </div>
+                                    <div class="shiptoput" id="destroyer" @click="selectShipToPut('destroyer')">DESTROYER
+                                    </div>
+                                    <div class="shiptoput" id="submarine" @click="selectShipToPut('submarine')">SUBMARINE
+                                    </div>
+                                    <div class="shiptoput" id="patrolboat" @click="selectShipToPut('patrolboat')">PATROL BOAT
+                                    </div>
+                                </div>
+                                <div id="radiowrapper">
+                                    <div class="radio2">
+                                        <input type="radio" id="one" value="Horizontal" v-model="picked">
+                                        <div>Horizontal</div>
+                                    </div>
+                                    <div class="radio2">
+                                        <input type="radio" id="two" value="Vertical" v-model="picked">
+                                        <div>Vertical</div>
+                                    </div>
+                                </div>
+                                <div class="buttonwrapper">
+                                    <div id="finalizebutton" v-if="addingShipsProcess" @click="addShips()">FINALIZE</div>
+                                    <div id="resetbutton" v-if="addingShipsProcess" @click="resetShips()">RESET</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gridbackground" v-show="!addingShipsProcess">
+                        <div class="gridwrapper" id="enemygrid">
+                            <div class="player" v-bind:class="{glowred : player2 == 'WAITING FOR PLAYER TO JOIN'}" id="enemyname">
+                                <table class="infotable">
+                                    <tr>
+                                        PLAYER: {{player2}} [ENEMY]
+                                    </tr>
+                                    <tr class="inforow">
+                                        <td class="infodata" v-if="player2 == 'WAITING FOR PLAYER TO JOIN'">-</td>
+                                        <td class="infodata" v-else>HITS ON ENEMY: {{noOfHitsOnEnemy}} / 17</td>
+                                        <td class="infodata" v-if="player2 == 'WAITING FOR PLAYER TO JOIN'">-</td>
+                                        <td class="infodata" v-else>SHIPS LEFT: {{enemyShipsLeft}} / 5</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <table class="p2table">
+                                <tr>
+                                </tr>
+                                <tr v-for="grida in gridAlphabet">
+                                    <td class="td4" v-if="grida == ''">
+                                        <div v-if="!isMyTurn" id="reddot">.</div>
+                                    </td>
+                                    <template v-for="gridn in gridNumbers">
+                                        <td class="td4" v-if="grida == '' && gridn != ''" v-bind:id="'grid2'+grida+gridn">{{gridn}}</td>
+                                        <td class="td4" v-if="gridn == 0 && grida != ''" v-bind:id="'grid2'+grida+gridn">{{grida}}</td>
+                                        <td class="td5" v-show="grida != '' && gridn != ''" v-bind:id="'grid2'+grida+gridn" @click="selectCellToShoot('grid2'+grida+gridn)"></td>
+                                    </template>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="gameoverwrapper" v-if="isGameOver">
+                    <div class="gameovergridwrapper">
+                        <table v-if="winner != 'DRAW'">
+                            <h1>GAME OVER</h1>
+                            <h2>************</h2>
+                            <h3>THE WINNER IS:</h3>
+                            <h3>{{winner}}</h3>
+                            <h2>************</h2>
+                            <h4>SCORE:</h4>
+                            <h5 v-if="winner != 'DRAW'">{{winner}}: +1</h5>
+                            <h5 v-else>{{player1}}: +0.5 / {{player2}}: +0.5</h5>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="/web/game.js"></script>
+</body>
+
+</html>

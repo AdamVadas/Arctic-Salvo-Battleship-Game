@@ -1,0 +1,903 @@
+body {
+    background-image: url(bground.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#app {
+    min-height: 100vh;
+    background: linear-gradient(-45deg,
+        rgba(195, 195, 195, 0.35),
+        rgba(52, 92, 137, 0.93));
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+}
+
+.titlewrapper {
+    justify-content: space-between;
+    width: 90%;
+}
+
+.td5:hover {
+    animation: glow-grey 2s ease infinite;
+}
+
+.titlewrapper,
+.centertitle,
+.mainwrapper2,
+.topbuttonswrapper,
+.userloginwrapper,
+.usersignupwrapper,
+.buttonwrapper,
+.infowrapper,
+.gamewrapper,
+.centerwrapper,
+.centerfield,
+.radio2,
+#radiowrapper {
+    display: flex;
+}
+
+.centertitle,
+.gamewrapper,
+.centerfield,
+.radio2,
+#radiowrapper {
+    justify-content: center;
+}
+
+.title,
+.loginwrapper,
+.leadertable,
+.gametable {
+    background-color: rgba(0, 0, 0, 0.54);
+}
+
+.titlewrapper,
+.spanbutton,
+.warning,
+.warning3,
+.leadertitle,
+.leadertable,
+.gametable,
+p2table,
+.p1table,
+#centertext,
+#finalizebutton,
+#resetbutton,
+.shiptoput,
+.firebutton,
+.td4 {
+    text-align: center;
+}
+
+.titlewrapper,
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn,
+#playername,
+.spanbutton,
+input,
+.input,
+.leadertitle,
+.leadertable,
+.gametable,
+.shipwrapper,
+#centertext,
+.radio2,
+.shiptoput,
+.firebutton,
+.td4 {
+    color: white;
+}
+
+.titlewrapper,
+.gameswrapper,
+.btn,
+.userloginwrapper,
+.usersignupwrapper,
+.leadertable,
+.gametable,
+.shipselection,
+.mainwrapper3,
+.shiptoput {
+    margin: 0 auto;
+}
+
+.titlewrapper,
+.buttonwrapper,
+.radio2,
+#radiowrapper {
+    flex-flow: row nowrap;
+}
+
+.titlewrapper,
+.mainwrapper2,
+.centerwrapper,
+.centerfield,
+#radiowrapper {
+    align-items: center;
+}
+
+body,
+.leadertitle {
+    width: 100%;
+}
+
+.title,
+#menubuttonwrapper {
+    z-index: 1;
+}
+
+.mainwrapper {
+    margin: 0 5vw;
+    padding-top: 1vh;
+}
+
+.title {
+    width: 30vw;
+    opacity: 0.75;
+    border: 4px solid black;
+    border-radius: 80px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.54);
+    animation: grow 1.5s ease-in-out;
+}
+
+input,
+.titlewrapper#topscores {
+    width: 20vw;
+}
+
+#loginfo,
+#playername,
+.input,
+.leadertable,
+.gametable {
+    font-family: 'Varela Round', sans-serif;
+}
+
+#loginfo,
+#playername,
+.spanbutton,
+.leadertitle {
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+}
+
+#loginfo,
+.leadertitle {
+    font-size: 2vw;
+}
+
+#playerlogwrapper,
+.centerfield,
+.shiptoput {
+    width: 15vw;
+}
+
+#playerlogwrapper,
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn,
+input,
+.gridbackground,
+.shiptoput {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#playerlogwrapper {
+    align-content: flex-end;
+    align-items: flex-end;
+    z-index: 0;
+    animation: slide-in-right 1.5s ease;
+}
+
+#playerlogwrapper,
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn,
+.spanbutton,
+input,
+.gridbackground,
+.shiptoput,
+.firebutton,
+#finalizebutton,
+#resetbutton,
+.topscorescells:hover,
+.joingamecells:hover {
+    border-radius: 50px;
+}
+
+.joingamecells:hover {
+    background-color: rgba(0, 0, 0, 0.45);
+    font-size: 1.25em;
+}
+
+#loginfo {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.2vw;
+}
+
+#playername,
+.joingamecells,
+.gridwrapper {
+    font-weight: 900;
+}
+
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn,
+.spanbutton,
+.input,
+#centertext,
+#finalizebutton,
+#resetbutton,
+.shiptoput,
+.firebutton,
+.radio2 {
+    font-size: 1.5vw;
+}
+
+#playername {
+    font-size: 80%;
+}
+
+#menubuttonwrapper,
+.centerwrapper {
+    flex-flow: column nowrap;
+}
+
+#menubuttonwrapper {
+    justify-content: flex-end;
+    animation: slide-in-left 1.5s ease;
+}
+
+.mainwrapper2,
+.topbuttonswrapper,
+.infowrapper,
+.gamewrapper {
+    flex-flow: row;
+}
+
+.mainwrapper2,
+.topbuttonswrapper,
+.buttonwrapper {
+    justify-content: space-around;
+}
+
+.mainwrapper2,
+.gridbackground {
+    margin-top: 5vh;
+}
+
+.mainwrapper2,
+.mainwrapper3 {
+    min-height: 70vh;
+    animation: jackInTheBox 1.25s ease;
+}
+
+.loginwrapper,
+.leaderswrapper {
+    width: 40vw;
+}
+
+.loginwrapper,
+.leadertable,
+.gametable {
+    border-radius: 30px;
+}
+
+.loginwrapper,
+.spanbutton,
+.leadertable,
+.gametable {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.54);
+}
+
+.loginwrapper {
+    height: 100%;
+}
+
+.topbuttonswrapper {
+    margin-top: 3vh;
+    margin-bottom: 5vh;
+}
+
+.spanbutton,
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn,
+#finalizebutton,
+#resetbutton,
+.firebutton,
+.radio2 {
+    width: 10vw;
+}
+
+.spanbutton,
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn,
+input,
+#centertext,
+.gridwrapper,
+.shiptoput,
+.radio2 {
+    font-family: 'Baloo Thambi', cursive;
+}
+
+.spanbutton {
+    background-color: rgba(0, 0, 0, 0.42);
+}
+
+.spanbutton,
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn,
+.topscorescells:hover {
+    transition: all .2s ease-in-out;
+}
+
+.topscorescells:hover {
+    background-color: rgba(0, 0, 0, 0.29);
+}
+
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn,
+.leadertable,
+.gametable,
+input {
+    height: 3vw;
+}
+
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn,
+.shiptoput {
+    margin-bottom: 2vh;
+}
+
+#finalizebutton,
+#resetbutton,
+input,
+.shiptoput,
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn {
+    border: none;
+}
+
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn,
+input {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+#loginbtn,
+#signupbtn,
+.logoutbtn,
+.mainmenu,
+.btn {
+    background-color: rgba(0, 0, 0, 0.39);
+}
+
+.logoutbtn {
+    margin: 1vh;
+}
+
+.toblock,
+.firebutton:hover {
+    color: black;
+}
+
+.firebutton:hover {
+    background-image: url(flame.gif);
+    background-position: bottom;
+    border: 3px solid black;
+    transform: scale(1.3);
+}
+
+.spanbutton:hover,
+#loginbtn:hover,
+#signupbtn:hover,
+.logoutbtn:hover,
+.mainmenu:hover,
+.btn:hover,
+.shiptoput:hover,
+#finalizebutton:hover,
+#resetbutton:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+    color: rgba(0, 0, 0, 0.54);
+    transform: scale(1.1);
+}
+
+.userloginwrapper,
+.usersignupwrapper,
+#playerlogwrapper {
+    flex-flow: column;
+}
+
+#login-form,
+#register-form {
+    margin-left: 10vw;
+}
+
+.warning,
+.ship-selected {
+    color: red;
+}
+
+.warning,
+.shipwrapper,
+.shiptoput,
+.radio2 {
+    font-weight: 500;
+}
+
+.warning {
+    animation: jackInTheBox 0.75s ease;
+}
+
+.warning3 {
+    color: #00be00;
+    font-weight: 800;
+    animation: jackInTheBox 0.75s ease;
+}
+
+.leadertitle {
+    font-family: 'Baloo Thambi';
+}
+
+.gamecells,
+.topscorescells,
+.centerfield {
+    padding: 1vw;
+}
+
+.joingamecells {
+    color: #00ff00;
+}
+
+.leadertable,
+.gametable,
+#enemyname,
+#playersname {
+    font-size: 1vw;
+}
+
+.leadertable {
+    width: 5vw;
+}
+
+.gametable {
+    width: 70vw;
+}
+
+th {
+    color: rgba(183, 183, 183, 0.78);
+}
+
+#greendot,
+#reddot {
+    margin: 0 auto;
+    width: 75%;
+    color: rgba(0, 0, 0, 0);
+    border-radius: 200%;
+}
+
+#greendot {
+    animation: glow-green 2s ease infinite;
+    ;
+}
+
+#reddot {
+    animation: glow-red 2s ease infinite;
+    ;
+}
+
+.myship,
+.mysalvo,
+.interimsalvo,
+.myshipdamaged,
+.myshipdamaged:hover {
+    background-size: cover;
+    animation: grow 0.3s ease;
+}
+
+.shipwrapper {
+    margin-top: 10vh;
+}
+
+.tablewrapper {
+    margin-left: 10%;
+}
+
+.textwrapper {
+    margin-left: 2%;
+}
+
+.centerfield {
+    height: 30vh;
+    margin-top: 15vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: grow 1.25s ease-in-out;
+}
+
+#centertext {
+    animation: text-red-to-white 2s ease-in-out;
+}
+
+.gridbackground {
+    width: 30vw;
+    height: 68vh;
+    animation: jackInTheBox 1.5s ease;
+}
+
+.gridwrapper {
+    height: 83%;
+    margin: 2vw;
+}
+
+.p2table,
+.p1table {
+    height: 93.5%;
+}
+
+.td2,
+.td4,
+.td5 {
+    width: 4vw;
+}
+
+.td2,
+.td5 {
+    background-color: rgba(255, 255, 255, 0.13);
+}
+
+.td4 {
+    background-color: rgba(0, 0, 0, 0.39);
+}
+
+.mysalvo:hover,
+.interimsalvo:hover,
+.myship:hover,
+.myshipdamaged:hover {
+    color: #ffffff;
+}
+
+.hoverCells {
+    background-color: rgba(65, 65, 65, 0.87);
+}
+
+.interimships {
+    background-color: rgba(235, 255, 0, 0.72);
+    animation: grow 0.3s ease;
+}
+
+.interimships:hover {
+    background-color: rgb(243, 255, 99);
+}
+
+.finalships {
+    background-color: rgba(0, 255, 69, 0.78);
+    animation: grow 0.3s ease;
+}
+
+.finalships:hover {
+    background-color: rgb(94, 255, 138);
+}
+
+.tohide {
+    display: none;
+}
+
+.shiptoput,
+#finalizebutton,
+#resetbutton,
+.firebutton,
+.radio2 {
+    transition: all 0.3s ease-in-out;
+}
+
+.shiptoput {
+    height: 2vw;
+}
+
+.toblock {
+    background-color: rgba(6, 150, 0, 0.72);
+}
+
+.firebutton,
+#finalizebutton,
+#resetbutton {
+    font-weight: 700;
+}
+
+.firebutton {
+    border: 3px solid rgba(0, 0, 0, 0.16);
+    background-color: rgba(0, 0, 0, 0.56);
+    margin-top: 7.5vh;
+    animation: grow 1s ease-in-out;
+}
+
+#finalizebutton,
+#resetbutton {
+    position: relative;
+}
+
+#finalizebutton {
+    background-color: rgba(6, 185, 47, 0.72);
+}
+
+#resetbutton {
+    background-color: rgba(255, 0, 0, 0.72);
+}
+
+.td2,
+.td4,
+.td5,
+.myship,
+.mysalvo,
+.myshipdamaged {
+    border: 2px solid rgba(0, 0, 0, 0.37);
+}
+
+.player {
+    background-color: rgba(0, 0, 0, 0.51);
+    color: white;
+    border-radius: 50px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.infotable {
+    width: 100%;
+}
+
+.inforow {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+.gameoverwrapper {
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    margin: 0 auto;
+    margin-top: 20vh;
+    width: 50vw;
+    height: 30vh;
+    text-align: center;
+}
+
+.gameovergridwrapper {
+    font-family: 'Baloo Thambi', cursive;
+    font-weight: 500;
+    border-radius: 50px;
+    animation: glow-gameover 4s ease infinite;
+}
+
+.glowgrey {
+    animation: glow-grey 2s ease infinite;
+}
+
+.glowred {
+    animation: glow-red 2s ease infinite;
+}
+
+.glowyellow {
+    animation: glow-yellow 2s ease infinite;
+}
+
+#radiowrapper {
+    align-content: center;
+    margin-bottom: 3vh;
+}
+
+.myship {
+    background-image: url(boat.jpg);
+}
+
+.myship:hover {
+    background-image: url(boat2.jpg);
+}
+
+.mysalvo {
+    background-image: url(crosshair.jpg);
+}
+
+.interimsalvo {
+    background-image: url(crosshair2.jpg);
+}
+
+.mysalvo:hover,
+.interimsalvo:hover {
+    background-image: url(crosshairhover.jpg);
+}
+
+.myshipdamaged {
+    background-image: url(x.jpg);
+    animation: grow 0.3s ease;
+}
+
+.myshipdamaged:hover {
+    background-image: url(x2.jpg);
+}
+
+.red {
+    background-color: red;
+}
+
+@keyframes slide-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-500px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-right {
+    0% {
+        opacity: 0;
+        transform: translateX(500px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0, 0);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes jackInTheBox {
+    from {
+        opacity: 0;
+        -webkit-transform: scale(0.5) rotate(-10deg);
+        transform: scale(0.5) rotate(-10deg);
+        -webkit-transform-origin: center bottom;
+        transform-origin: center bottom;
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes glow-grey {
+    0% {
+        background-color: rgba(208, 208, 208, 0.79);
+    }
+
+    50% {
+        background-color: rgba(83, 83, 83, 0.74);
+    }
+
+    100% {
+        background-color: rgba(208, 208, 208, 0.79);
+    }
+}
+
+@keyframes glow-red {
+    0% {
+        background-color: rgba(208, 208, 208, 0);
+    }
+
+    50% {
+        background-color: rgba(255, 0, 0, 0.74);
+    }
+
+    100% {
+        background-color: rgba(208, 208, 208, 0);
+    }
+}
+
+@keyframes glow-green {
+    0% {
+        background-color: rgba(208, 208, 208, 0);
+    }
+
+    50% {
+        background-color: rgba(49, 255, 0, 0.79);
+    }
+
+    100% {
+        background-color: rgba(208, 208, 208, 0);
+    }
+}
+
+@keyframes glow-yellow {
+    0% {
+        background-color: rgba(208, 208, 208, 0.79);
+    }
+
+    50% {
+        background-color: rgba(235, 255, 0, 0.72);
+    }
+
+    100% {
+        background-color: rgba(208, 208, 208, 0.79);
+    }
+}
+
+@keyframes glow-gameover {
+    0% {
+        background-color: rgba(0, 0, 0, 0.44);
+        color: red;
+    }
+
+    50% {
+        background-color: rgba(0, 0, 0, 0.72);
+        color: white;
+    }
+
+    100% {
+        background-color: rgba(0, 0, 0, 0.44);
+        color: red;
+    }
+}
+
+@keyframes text-red-to-white {
+    0% {
+        color: red;
+    }
+
+    100% {
+        color: white;
+    }
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Salvo Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="/web/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="mainwrapper">
+            <div class="titlewrapper" v-bind:class="{centertitle: !loggedIn}">
+                <div id="playerlogwrapper" v-if="loggedIn">
+                    <h2 v-if="loggedIn" id="loginfo">Logged in as</h2>
+                    <h2 v-if="loggedIn" id="playername">{{userNameEntered}}</h2>
+                </div>
+                <img class="title" src="title.jpg">
+                <div id="menubuttonwrapper" v-if="loggedIn">
+                    <button class="logoutbtn" @click="logout()">Log out</button>
+                </div>
+            </div>
+            <div class="mainwrapper2">
+                <div class="loginwrapper" v-if="path < 3">
+                    <div class="topbuttonswrapper">
+                        <span class="spanbutton" v-on:click="changeContent(1)">LOGIN</span>
+                        <span class="spanbutton" v-on:click="changeContent(2)">SIGNUP</span>
+                    </div>
+                    <p class="warning" v-if="warning1">Please enter a valid username and password</p>
+                    <p class="warning3" v-if="warning3">Thanks for registering! You can log in now.</p>
+                    <p class="warning" v-if="warning5">Your password must contain at least 8 characters</p>
+                    <div class="userloginwrapper" v-if="path == 1">
+                        <div id="login-form">
+                            <p class="input">Name:</p>
+                            <input type="text" v-model="userNameEntered" name="username" required>
+                            <p class="input">Password:</p>
+                            <input type="password" v-model="passwordEntered" id="pass" name="password" required>
+                            <p></p>
+                            <button id="loginbtn" @click="login()">LET'S GO!</button>
+                        </div>
+                    </div>
+                    <p class="warning" v-if="warning2">The passwords should be identical, please re-check</p>
+                    <p class="warning" v-if="warning4">This username is already taken, please choose another one.</p>
+                    <div class="usersignupwrapper" v-if="path == 2">
+                        <div id="register-form">
+                            <p class="input">Your Name:</p>
+                            <input type="text" v-model="userNameEntered" name="username">
+                            <p class="input">Password:</p>
+                            <input type="password" v-model="passwordEntered" id="newpass" name="password" minlength="8" required>
+                            <p class="input">Re-enter Password:</p>
+                            <input type="password" v-model="password2Entered" id="newpass2" name="password" required>
+                            <p></p>
+                            <button id="signupbtn" @click="createNewPlayer()">REGISTER</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="leaderswrapper" v-if="path < 3">
+                    <div class="titlewrapper" id="topscores">
+                        <h2 class="leadertitle">TOP SCORES</h2>
+                    </div>
+                    <table class="leadertable">
+                        <tr>
+                            <th class="topscorescells">NAME</th>
+                            <th class="topscorescells">TOTAL</th>
+                            <th class="topscorescells">WON</th>
+                            <th class="topscorescells">LOST</th>
+                            <th class="topscorescells">TIED</th>
+                        </tr>
+                        <tr v-for="player in allScores">
+                            <td class="topscorescells">{{player.player}}</td>
+                            <td class="topscorescells">{{player.total_score}}</td>
+                            <td class="topscorescells">{{player.wins}}</td>
+                            <td class="topscorescells">{{player.losses}}</td>
+                            <td class="topscorescells">{{player.ties}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="gameswrapper" v-if="path == 3">
+                    <button class="btn" @click="createGame()">NEW GAME</button>
+                    <div class="titlewrapper" id="games">
+                        <h2 class="leadertitle">ALL GAMES</h2>
+                    </div>
+                    <table class="gametable">
+                        <tr>
+                            <th class="gamecells">GAME NO.</th>
+                            <th class="gamecells">CREATED</th>
+                            <th class="gamecells">PLAYER 1</th>
+                            <th class="gamecells">PLAYER 2</th>
+                            <th class="gamecells">ACTION</th>
+                        </tr>
+                        <tr v-for="game in gameInfo">
+
+                            <td class="gamecells">{{game.gameId}}</td>
+                            <td class="gamecells">{{game.gameDate}}</td>
+
+                            <td class="gamecells" v-if="game.gamePlayer1 != undefined && game.gamePlayer1 != null">{{game.gamePlayer1}}</td>
+                            <td class="gamecells" v-else>-</td>
+                            <td class="gamecells" v-if="game.gamePlayer2 != undefined && game.gamePlayer2 != null">{{game.gamePlayer2}}</td>
+                            <td class="gamecells" v-else>-</td>
+
+                            <td class="joingamecells" v-if="game.gamePlayer1 == userNameEntered && game.gamePlayer1 != game.gamePlayer2" @click="goToGame(game.gamePlayer1id)">PLAY</td>
+
+                            <td class="joingamecells" v-if="game.gamePlayer2 == userNameEntered && game.gamePlayer1 != game.gamePlayer2" @click="goToGame(game.gamePlayer2id)">PLAY</td>
+
+                            <td class="joingamecells" v-if="((game.gamePlayer1 == undefined || game.gamePlayer1 == undefined) && game.gamePlayer2 != userNameEntered)" @click="joinGame(game.gameId)">JOIN</td>
+
+                            <td class="joingamecells" v-if="((game.gamePlayer2 == undefined || game.gamePlayer2 == undefined) && game.gamePlayer1 != userNameEntered)" @click="joinGame(game.gameId)">JOIN</td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="/web/games.js"></script>
+</body>
+
+</html>
