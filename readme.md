@@ -29,7 +29,7 @@ For general rules of a salvo-type game, please visit: https://www.thesprucecraft
 <a href="#">Coming soon!</a>
 
 ## Version History
-* Version 0.8 - built using Java 8 and Gradle 4.3 - 15 March 2019
+* Version 0.8.0 - works locally, built using Java 8 and Gradle 4.3 - 15 March 2019
 * Version 0.8.1 - upgraded to Java 11, Gradle 5.6.2 and dependencies fixed - 10 September 2019
 * Version 0.8.2 - changed to Maven and updated dependencies - 31 March 2020
 
